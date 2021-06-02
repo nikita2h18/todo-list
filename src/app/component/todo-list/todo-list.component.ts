@@ -19,4 +19,8 @@ export class TodoListComponent{
       }
     })
   }
+
+  deleteTodo(todo: Todo): void {
+    this.todoList.splice(this.todoList.indexOf(todo, 0), 1);
+  }
 }
