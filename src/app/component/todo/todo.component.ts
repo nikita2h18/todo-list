@@ -9,6 +9,8 @@ import {Todo} from "../../entity/Todo";
   encapsulation: ViewEncapsulation.None,
 })
 export class TodoComponent {
+  isButtonProcessedClick = false;
+  isButtonGetAllClicked = true;
   private _todoMessage = '';
   private todoListContainer = new TodoListContainer();
 
@@ -45,5 +47,15 @@ export class TodoComponent {
     })
 
     return todos;
+  }
+
+  getProcessedClick() {
+    this.isButtonProcessedClick = true;
+    this.isButtonGetAllClicked = false;
+  }
+
+  getAllClick() {
+    this.isButtonProcessedClick = false;
+    this.isButtonGetAllClicked = true;
   }
 }

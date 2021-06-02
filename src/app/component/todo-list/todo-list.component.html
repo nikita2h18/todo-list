@@ -14,7 +14,7 @@
     <input matInput
            type="text"
            [(ngModel)]="todo.message"
-           (keyup.enter)="todo.message; changeDisplay()">
+           (keyup.enter)="todo.message">
   </mat-form-field>
 
   <ng-template #undone>

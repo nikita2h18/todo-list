@@ -7,9 +7,17 @@
     </button>
   </mat-form-field>
 
-  <button (click)="getProcessedTodos()">
-    in progress
+  <app-todo-list *ngIf="isButtonProcessedClick" [todoList]="getProcessedTodos()"></app-todo-list>
+
+  <app-todo-list *ngIf="isButtonGetAllClicked" [todoList]="getTodos()"></app-todo-list>
+</div>
+
+<div>
+  <button mat-icon-button matSuffix aria-label="getAll" (click)="getProcessedClick()">
+    getProcessed
   </button>
 
-  <app-todo-list [todoList]="getTodos()"></app-todo-list>
+  <button mat-icon-button matSuffix aria-label="getAll" (click)="getAllClick()">
+    getAll
+  </button>
 </div>
