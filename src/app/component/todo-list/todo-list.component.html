@@ -1,6 +1,6 @@
 <div *ngFor="let todo of todoList">
-  <div class="todo">
-    <span class="todo__message">{{todo.message}}</span>
+  <div class="todo" [style.display]="todoDisplay">
+    <span class="todo__message" (dblclick)="changeDisplay()">{{todo.message}}</span>
     <button mat-button *ngIf="todo.isDone; else undone"
             (click)="switchIsDone(todo.message)">
       <mat-icon class="todo__icon todo__icon_green">thumb_up</mat-icon>
@@ -9,6 +9,13 @@
       <mat-icon>delete</mat-icon>
     </button>
   </div>
+
+  <mat-form-field [style.display]="inputDisplay">
+    <input matInput
+           type="text"
+           [(ngModel)]="todo.message"
+           (keyup.enter)="todo.message; changeDisplay()">
+  </mat-form-field>
 
   <ng-template #undone>
     <button mat-button (click)="switchIsDone(todo.message)">

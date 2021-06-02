@@ -7,5 +7,9 @@
     </button>
   </mat-form-field>
 
+  <button (click)="getProcessedTodos()">
+    in progress
+  </button>
+
   <app-todo-list [todoList]="getTodos()"></app-todo-list>
 </div>

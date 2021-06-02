@@ -11,13 +11,13 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
 import {MatListModule} from "@angular/material/list";
-import { TodoListComponent } from './component/todo-list/todo-list.component';
+import {TodoListComponent} from './component/todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
-    TodoListComponent
+    TodoListComponent,
   ],
   imports: [
     BrowserModule,

@@ -35,4 +35,15 @@ export class TodoComponent {
   getTodos(): Todo[] {
     return this.todoListContainer.getTodoList();
   }
+
+  getProcessedTodos(): Todo[] {
+    const todos: Todo[] = [];
+    this.getTodos().forEach(todo => {
+      if (!todo.isDone) {
+        todos.push(todo);
+      }
+    })
+
+    return todos;
+  }
 }
