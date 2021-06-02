@@ -1,0 +1,11 @@
+<div class="todo-container">
+  <h1>TODO</h1>
+  <mat-form-field class="todo-container__input">
+    <input matInput type="text" [(ngModel)]="todoMessage" (keyup.enter)="addTodo(todoMessage)">
+    <button *ngIf="!!todoMessage" matSuffix mat-icon-button aria-label="Clear" (click)="clearValue()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <app-todo-list [todoList]="getTodos()"></app-todo-list>
+</div>

@@ -1,0 +1,29 @@
+.todo-container {
+  padding-top: 8%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.todo-container__input {
+  width: 300px;
+}
+
+.todo {
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__message {
+  display: flex;
+  align-items: center;
+}
+
+.todo__icon_green {
+  color: green;
+}
+
+.todo__icon_red {
+  color: red;
+}
