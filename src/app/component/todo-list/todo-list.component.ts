@@ -7,22 +7,10 @@ import {Todo} from "../../entity/Todo";
   styleUrls: ['./todo-list.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TodoListComponent{
-  @Input() todoList: Todo[] = [new Todo('', false)];
-  inputDisplay = 'none';
-  todoDisplay = 'flex'
+export class TodoListComponent {
+  @Input() todoList: any;
 
   constructor() { }
-
-  changeDisplay(): void {
-    if(this.todoDisplay === 'flex') {
-      this.inputDisplay = 'block';
-      this.todoDisplay = 'none';
-    } else {
-      this.inputDisplay = 'none';
-      this.todoDisplay = 'flex';
-    }
-  }
 
   switchIsDone(message: string): void {
     this.todoList.forEach((todo: Todo) => {

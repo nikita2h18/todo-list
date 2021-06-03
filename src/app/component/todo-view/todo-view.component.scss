@@ -3,10 +3,10 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-}
 
-.todo-container__input {
-  width: 300px;
+  &__input {
+    width: 300px;
+  }
 }
 
 .todo {
@@ -26,4 +26,8 @@
 
 .todo__icon_red {
   color: red;
+}
+
+.display-none {
+  display: none;
 }
