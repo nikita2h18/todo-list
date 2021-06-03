@@ -14,6 +14,7 @@ import {MatListModule} from "@angular/material/list";
 import {TodoListComponent} from './component/todo-list/todo-list.component';
 import {TodoComponent} from "./component/todo/todo.component";
 import { TodoButtonComponent } from './component/todo-button/todo-button.component';
+import { RoutingComponentComponent } from './component/routing-component/routing-component.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TodoButtonComponent } from './component/todo-button/todo-button.compone
     TodoViewComponent,
     TodoListComponent,
     TodoButtonComponent,
+    RoutingComponentComponent,
   ],
   imports: [
     BrowserModule,

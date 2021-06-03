@@ -1,5 +1,6 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {Todo} from "../../entity/Todo";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-todo',
@@ -18,7 +19,7 @@ export class TodoComponent {
     this._isEdit = value;
   }
 
-  switchIsEdit() {
+  switchIsEdit(): void {
     this.isEdit = !this.isEdit;
   }
 }

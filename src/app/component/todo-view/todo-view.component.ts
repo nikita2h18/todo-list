@@ -1,6 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {TodoListService} from "../../service/TodoListService";
 import {Todo} from "../../entity/Todo";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-todo-view',
@@ -14,7 +15,9 @@ export class TodoViewComponent {
   private _input = '';
   private todoListService = new TodoListService();
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   get input(): string {
@@ -51,5 +54,9 @@ export class TodoViewComponent {
     }
 
     return this.todoListService.getTodoList();
+  }
+
+  navigate(): void {
+    this.router.navigateByUrl('routing');
   }
 }
