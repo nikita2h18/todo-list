@@ -1,4 +1,4 @@
-<span *ngIf="isEdit; else edit" (dblclick)="switchIsEdit()">{{todo.value}}</span>
+<span *ngIf="isEdit; else edit" (click)="navigate()" (dblclick)="switchIsEdit()">{{todo.value}}</span>
 
 <ng-template #edit>
   <mat-form-field>

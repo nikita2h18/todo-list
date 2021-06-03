@@ -15,11 +15,6 @@ export class TodoViewComponent {
   private _input = '';
   private todoListService = new TodoListService();
 
-  constructor(
-    private router: Router
-  ) {
-  }
-
   get input(): string {
     return this._input;
   }
@@ -54,9 +49,5 @@ export class TodoViewComponent {
     }
 
     return this.todoListService.getTodoList();
-  }
-
-  navigate(): void {
-    this.router.navigateByUrl('routing');
   }
 }

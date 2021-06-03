@@ -1,2 +1,6 @@
-<p>routing-component works!</p>
 <button [routerLink]="'..'">Back</button>
+<div>{{todo.value}}</div>
+<div *ngIf="todo.isDone;else processed">Done</div>
+<ng-template #processed>
+  <div>Processed</div>
+</ng-template>
