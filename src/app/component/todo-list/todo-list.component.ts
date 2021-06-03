@@ -17,6 +17,6 @@ export class TodoListComponent {
   }
 
   deleteTodo(todo: Todo): Todo[] {
-    return this.todoListService.deleteTodo(todo, this.todoList);
+    return this.todoListService.deleteTodo(todo);
   }
 }

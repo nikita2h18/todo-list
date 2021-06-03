@@ -16,7 +16,7 @@ export class TodoButtonComponent {
 
   switchIsDone(message: string): void {
     this.todoList.forEach((todo: Todo) => {
-      if (todo.message === message) {
+      if (todo.value === message) {
         todo.isDone = !todo.isDone;
       }
     })

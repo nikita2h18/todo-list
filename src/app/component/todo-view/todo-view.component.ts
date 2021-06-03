@@ -11,26 +11,26 @@ import {Todo} from "../../entity/Todo";
 export class TodoViewComponent {
   private isTodoDone = false;
   private isTodoProcessed = false;
-  private _todoMessage = '';
+  private _input = '';
   private todoListService = new TodoListService();
 
   constructor() {
   }
 
-  get todoMessage(): string {
-    return this._todoMessage;
+  get input(): string {
+    return this._input;
   }
 
-  set todoMessage(value: string) {
-    this._todoMessage = value;
+  set input(value: string) {
+    this._input = value;
   }
 
-  clearValue(): void {
-    this._todoMessage = '';
+  resetInput(): void {
+    this.input = ''
   }
 
   addTodo(message: string): void {
-    this.clearValue();
+    this.resetInput();
     this.todoListService.pushTodo(new Todo(message, false));
   }
 

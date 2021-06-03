@@ -26,7 +26,7 @@ export class TodoListService {
     return todos;
   }
 
-  deleteTodo(todo: Todo, todoList: Todo[]): Todo[] {
-    return todoList.splice(this.todoList.indexOf(todo, 0), 1);
+  deleteTodo(todo: Todo): Todo[] {
+    return this.todoList.splice(this.todoList.indexOf(todo, 0), 1);
   }
 }

@@ -1,19 +1,19 @@
 export class Todo {
-  private _message: string;
+  private _value: string;
   private _isDone: boolean;
 
   constructor(message: string, done: boolean) {
-    this._message = message;
+    this._value = message;
     this._isDone = done;
   }
 
 
-  get message(): string {
-    return this._message;
+  get value(): string {
+    return this._value;
   }
 
-  set message(value: string) {
-    this._message = value;
+  set value(value: string) {
+    this._value = value;
   }
 
   get isDone(): boolean {
