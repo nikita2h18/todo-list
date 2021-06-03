@@ -1,18 +1,17 @@
 import {Todo} from "../entity/Todo";
 import {Injectable} from "@angular/core";
+import {todoList} from "../globals/todo-list";
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoListService {
-  todoList: Todo[] = [new Todo('Сходить в магазин', false)];
-
   pushTodo(todo: Todo) {
-    this.todoList.push(todo);
+    todoList.push(todo);
   }
 
   getTodoList(): Todo[] {
-    return this.todoList;
+    return todoList;
   }
 
   getTodosByIsDone(filter: boolean): Todo[] {
@@ -27,6 +26,6 @@ export class TodoListService {
   }
 
   deleteTodo(todo: Todo): Todo[] {
-    return this.todoList.splice(this.todoList.indexOf(todo, 0), 1);
+    return todoList.splice(todoList.indexOf(todo, 0), 1);
   }
 }
