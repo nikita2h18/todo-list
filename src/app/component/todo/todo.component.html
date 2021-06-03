@@ -1,0 +1,7 @@
+<span *ngIf="isEdit; else edit" (dblclick)="switchIsEdit()">{{todo.message}}</span>
+
+<ng-template #edit>
+  <mat-form-field>
+    <input matInput type="text" [(ngModel)]="todo.message" (keyup.enter)="switchIsEdit()">
+  </mat-form-field>
+</ng-template>

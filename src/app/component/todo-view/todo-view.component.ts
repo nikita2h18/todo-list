@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {TodoListerService} from "../../service/TodoListerService";
+import {TodoListService} from "../../service/TodoListService";
 import {Todo} from "../../entity/Todo";
 
 @Component({
@@ -9,10 +9,10 @@ import {Todo} from "../../entity/Todo";
   encapsulation: ViewEncapsulation.None,
 })
 export class TodoViewComponent {
-  isTodoDone = false;
-  isTodoProcessed = false;
+  private isTodoDone = false;
+  private isTodoProcessed = false;
   private _todoMessage = '';
-  private todoListContainer = new TodoListerService();
+  private todoListService = new TodoListService();
 
   constructor() {
   }
@@ -31,40 +31,25 @@ export class TodoViewComponent {
 
   addTodo(message: string): void {
     this.clearValue();
-    this.todoListContainer.pushTodo(new Todo(message, false));
+    this.todoListService.pushTodo(new Todo(message, false));
   }
 
-  getAllTodos(): Todo[] {
-    return this.todoListContainer.getTodoList();
-  }
-
-  getTodosByIsDoneValue(filter: boolean): Todo[] {
-    const todos: Todo[] = [];
-    this.getAllTodos().forEach(todo => {
-      if (todo.isDone === filter) {
-        todos.push(todo);
-      }
-    })
-
-    return todos;
-  }
-
-  changeFlag(isDone: boolean, isProcessed: boolean): void {
+  chooseButton(isDone: boolean, isProcessed: boolean): void {
     this.isTodoDone = isDone;
     this.isTodoProcessed = isProcessed;
   }
 
-  getFilteredTodos(): Todo[] {
+  getTodo(): Todo[] {
     if (this.isTodoProcessed) {
       this.isTodoDone = false;
-      return this.getTodosByIsDoneValue(false);
+      return this.todoListService.getTodosByIsDone(false);
     }
 
     if (this.isTodoDone) {
       this.isTodoProcessed = false;
-      return this.getTodosByIsDoneValue(true);
+      return this.todoListService.getTodosByIsDone(true);
     }
 
-    return this.getAllTodos();
+    return this.todoListService.getTodoList();
   }
 }

@@ -12,12 +12,16 @@ import {MatButtonModule} from "@angular/material/button";
 import {FormsModule} from "@angular/forms";
 import {MatListModule} from "@angular/material/list";
 import {TodoListComponent} from './component/todo-list/todo-list.component';
+import {TodoComponent} from "./component/todo/todo.component";
+import { TodoButtonComponent } from './component/todo-button/todo-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TodoComponent,
     TodoViewComponent,
     TodoListComponent,
+    TodoButtonComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {Todo} from "../../entity/Todo";
+import {TodoListService} from "../../service/TodoListService";
 
 @Component({
   selector: 'app-todo-list',
@@ -8,19 +9,14 @@ import {Todo} from "../../entity/Todo";
   encapsulation: ViewEncapsulation.None
 })
 export class TodoListComponent {
-  @Input() todoList: any;
+  @Input() todoList!: Todo[];
 
-  constructor() { }
-
-  switchIsDone(message: string): void {
-    this.todoList.forEach((todo: Todo) => {
-      if (todo.message === message) {
-        todo.isDone = !todo.isDone;
-      }
-    })
+  constructor(
+    private todoListService: TodoListService
+  ) {
   }
 
-  deleteTodo(todo: Todo): void {
-    this.todoList.splice(this.todoList.indexOf(todo, 0), 1);
+  deleteTodo(todo: Todo): Todo[] {
+    return this.todoListService.deleteTodo(todo, this.todoList);
   }
 }

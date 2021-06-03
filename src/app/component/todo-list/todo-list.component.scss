@@ -1,3 +1,10 @@
-.todo__button {
-  width: 36px;
+.todo {
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__message {
+  display: flex;
+  align-items: center;
 }
