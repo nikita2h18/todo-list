@@ -15,7 +15,7 @@ export class RoutingComponentComponent implements OnInit{
 
   ngOnInit(): void {
     console.log(this.route.snapshot);
-    this.todo.value = (this.route.snapshot.queryParams.value as string);
-    this.todo.isDone = !!this.route.snapshot.queryParams.isDone;
+    this.todo.value = this.route.snapshot.queryParams.value;
+    this.todo.isDone = this.route.snapshot.queryParams.isDone;
   }
 }
