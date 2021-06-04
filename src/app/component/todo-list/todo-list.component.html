@@ -2,7 +2,7 @@
   <app-todo class="todo__message" [todo]="todo"></app-todo>
 
   <app-todo-button [todo]="todo"
-                   (todoForDelete)="delete($event)"
-                   (switchIsDone)="switch($event)">
+                   (delete)="onDelete($event)"
+                   (switchIsDone)="onSwitch($event)">
   </app-todo-button>
 </div>

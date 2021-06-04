@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {Todo} from "../../entity/Todo";
+import {Todo} from "../../entity/todo";
 
 @Component({
   selector: 'app-todo-button',
@@ -9,14 +9,14 @@ import {Todo} from "../../entity/Todo";
 })
 export class TodoButtonComponent {
   @Input() todo!: Todo;
-  @Output() todoForDelete = new EventEmitter<Todo>();
+  @Output() delete = new EventEmitter<Todo>();
   @Output() switchIsDone = new EventEmitter<Todo>();
 
-  switch(): void {
+  onSwitch(): void {
     this.switchIsDone.emit(this.todo)
   }
 
-  delete(): void {
-    this.todoForDelete.emit(this.todo);
+  onDelete(): void {
+    this.delete.emit(this.todo);
   }
 }

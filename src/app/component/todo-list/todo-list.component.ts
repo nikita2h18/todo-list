@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
-import {Todo} from "../../entity/Todo";
-import {TodoListService} from "../../service/TodoListService";
+import {Todo} from "../../entity/todo";
+import {TodosService} from "../../service/todo-list.service";
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Component({
@@ -12,14 +12,14 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class TodoListComponent {
   @Input() todos!: Observable<Todo[]>;
-  @Output() todoForDelete = new EventEmitter<Todo>();
+  @Output() delete = new EventEmitter<Todo>();
   @Output() switchIsDone = new EventEmitter<Todo>();
 
-  delete(todo: Todo) {
-    this.todoForDelete.emit(todo);
+  onDelete(todo: Todo) {
+    this.delete.emit(todo);
   }
 
-  switch(todo: Todo) {
+  onSwitch(todo: Todo) {
     this.switchIsDone.emit(todo);
   }
 }

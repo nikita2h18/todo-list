@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Todo} from "../../entity/Todo";
+import {Todo} from "../../entity/todo";
 import {Router} from "@angular/router";
 
 @Component({

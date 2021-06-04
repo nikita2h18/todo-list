@@ -1,4 +1,4 @@
-import {Todo} from "../entity/Todo";
+import {Todo} from "../entity/todo";
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map} from "rxjs/operators";
@@ -6,7 +6,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: 'root',
 })
-export class TodoListService {
+export class TodosListService {
   private todos: Todo[] = [new Todo('Сходить в магазин')];
   private todoListSubject = new BehaviorSubject<Todo[]>(this.todos);
 
@@ -33,7 +33,7 @@ export class TodoListService {
   }
 
   switch(todo: Todo): void {
-    this.todos.find(t => {
+    this.todos.forEach(t => {
       if (t.id === todo.id) {
         t.isDone = !t.isDone
       }

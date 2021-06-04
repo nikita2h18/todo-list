@@ -23,7 +23,7 @@
   </div>
 
   <app-todo-list [todos]="currentTodos"
-                 (todoForDelete)="delete($event)"
+                 (delete)="delete($event)"
                  (switchIsDone)="switch($event)">
   </app-todo-list>
 </div>
