@@ -5,11 +5,11 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-todo-view',
-  templateUrl: './todo-view.component.html',
-  styleUrls: ['./todo-view.component.scss'],
+  templateUrl: './todos-view.component.html',
+  styleUrls: ['./todo-views.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class TodoViewComponent {
+export class TodosViewComponent {
   private isTodoDone = false;
   private isTodoProcessed = false;
   private _input = '';
