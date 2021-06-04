@@ -24,19 +24,19 @@ export class TodosViewComponent {
 
   addTodo(input: string): void {
     this.resetInput();
-    this.todoListService.push(new Todo(input));
+    this.todoListService.addTodo(new Todo(input));
   }
 
   chooseButton(button: string): void {
     this.button = button;
   }
 
-  delete(todo: Todo) {
-    this.todoListService.delete(todo);
+  deleteTodo(todo: Todo) {
+    this.todoListService.deleteTodo(todo);
   }
 
   getAll() {
-    return this.todoListService.get()
+    return this.todoListService.getAll()
   }
 
   getProcessed() {

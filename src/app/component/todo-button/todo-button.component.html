@@ -1,5 +1,5 @@
 <button mat-button *ngIf="todo.isDone; else undone"
-        (click)="switchIsDone()">
+        (click)="switchIsDone(todo.id)">
   <mat-icon class="button__icon button__icon_green">thumb_up</mat-icon>
 </button>
 
@@ -8,7 +8,7 @@
 </button>
 
 <ng-template #undone>
-  <button mat-button (click)="switchIsDone()">
+  <button mat-button (click)="switchIsDone(todo.id)">
     <mat-icon class="button__icon button__icon_red">thumb_down</mat-icon>
   </button>
 </ng-template>

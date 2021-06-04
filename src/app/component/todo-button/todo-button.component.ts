@@ -13,8 +13,11 @@ export class TodoButtonComponent {
   constructor() {
   }
 
-  switchIsDone(): void {
-    this.todo.isDone = !this.todo.isDone;
+  switchIsDone(id: string): void {
+    if (this.todo.id === id) {
+      this.todo.isDone = !this.todo.isDone;
+
+    }
   }
 
   deleteTodo(): void {

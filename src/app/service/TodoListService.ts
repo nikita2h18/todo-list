@@ -10,6 +10,10 @@ export class TodoListService {
   private todos: Todo[] = [new Todo('Сходить в магазин')];
   private todoListSubject = new BehaviorSubject<Todo[]>(this.todos);
 
+  getAll() {
+    return this.todoListSubject.asObservable();
+  }
+
   doneTodos() {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => todo.isDone)));
   }
@@ -18,16 +22,12 @@ export class TodoListService {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => !todo.isDone)));
   }
 
-  push(todo: Todo) {
+  addTodo(todo: Todo) {
     this.todos.push(todo);
     this.todoListSubject.next(this.todos);
   }
 
-  get() {
-    return this.todoListSubject.asObservable();
-  }
-
-  delete(todo: Todo) {
+  deleteTodo(todo: Todo) {
     this.todos.splice(this.todos.indexOf(todo, 0), 1);
     this.todoListSubject.next(this.todos);
   }
