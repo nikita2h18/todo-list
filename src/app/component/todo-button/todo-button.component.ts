@@ -1,23 +1,22 @@
-import {Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {Todo} from "../../entity/Todo";
 
 @Component({
   selector: 'app-todo-button',
   templateUrl: './todo-button.component.html',
   styleUrls: ['./todo-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoButtonComponent {
   @Input() todo!: Todo;
-  @Output() event = new EventEmitter<Todo>();
+  @Output() todoForDelete = new EventEmitter<Todo>();
+  @Output() switchIsDone = new EventEmitter<Todo>();
 
-  switchIsDone(id: string): void {
-    if (this.todo.id === id) {
-      this.todo.isDone = !this.todo.isDone;
-
-    }
+  switch(): void {
+    this.switchIsDone.emit(this.todo)
   }
 
-  deleteTodo(): void {
-    this.event.emit(this.todo);
+  delete(): void {
+    this.todoForDelete.emit(this.todo);
   }
 }

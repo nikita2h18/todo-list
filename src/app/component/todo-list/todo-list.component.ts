@@ -12,9 +12,14 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class TodoListComponent {
   @Input() todos!: Observable<Todo[]>;
-  @Output() event = new EventEmitter<Todo>();
+  @Output() todoForDelete = new EventEmitter<Todo>();
+  @Output() switchIsDone = new EventEmitter<Todo>();
 
   delete(todo: Todo) {
-    this.event.emit(todo);
+    this.todoForDelete.emit(todo);
+  }
+
+  switch(todo: Todo) {
+    this.switchIsDone.emit(todo);
   }
 }

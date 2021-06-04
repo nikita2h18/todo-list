@@ -1,6 +1,6 @@
 import {Todo} from "../entity/Todo";
 import {Injectable} from "@angular/core";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -10,25 +10,34 @@ export class TodoListService {
   private todos: Todo[] = [new Todo('Сходить в магазин')];
   private todoListSubject = new BehaviorSubject<Todo[]>(this.todos);
 
-  getAll() {
+  getAll(): Observable<Todo[]> {
     return this.todoListSubject.asObservable();
   }
 
-  getDone() {
+  getDone(): Observable<Todo[]> {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => todo.isDone)));
   }
 
-  getProcessed() {
+  getProcessed(): Observable<Todo[]> {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => !todo.isDone)));
   }
 
-  addTodo(todo: Todo) {
+  add(todo: Todo): void {
     this.todos.push(todo);
     this.todoListSubject.next(this.todos);
   }
 
-  deleteTodo(todo: Todo) {
-    this.todos.splice(this.todos.indexOf(todo, 0), 1);
+  delete(todo: Todo): void {
+    this.todos = this.todos.filter(t => t.id !== todo.id)
+    this.todoListSubject.next(this.todos);
+  }
+
+  switch(todo: Todo): void {
+    this.todos.find(t => {
+      if (t.id === todo.id) {
+        t.isDone = !t.isDone
+      }
+    });
     this.todoListSubject.next(this.todos);
   }
 }

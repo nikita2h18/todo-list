@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {TodoListService} from "../../service/TodoListService";
 import {Todo} from "../../entity/Todo";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-todo-view',
@@ -10,13 +11,12 @@ import {Todo} from "../../entity/Todo";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosViewComponent {
-  public button = 'all';
   public input = '';
+  public currentTodos = this.getAll();
 
   constructor(
     private todoListService: TodoListService
-  ) {
-  }
+  ) {}
 
   resetInput(): void {
     this.input = ''
@@ -24,26 +24,26 @@ export class TodosViewComponent {
 
   addTodo(input: string): void {
     this.resetInput();
-    this.todoListService.addTodo(new Todo(input));
+    this.todoListService.add(new Todo(input));
   }
 
-  chooseButton(button: string): void {
-    this.button = button;
-  }
-
-  deleteTodo(todo: Todo) {
-    this.todoListService.deleteTodo(todo);
-  }
-
-  getAll() {
+  getAll(): Observable<Todo[]> {
     return this.todoListService.getAll()
   }
 
-  getProcessed() {
+  getProcessed(): Observable<Todo[]> {
     return this.todoListService.getProcessed();
   }
 
-  getDone() {
+  getDone(): Observable<Todo[]> {
     return this.todoListService.getDone();
+  }
+
+  delete(todo: Todo): void {
+    this.todoListService.delete(todo);
+  }
+
+  switch(todo: Todo): void {
+    this.todoListService.switch(todo);
   }
 }
