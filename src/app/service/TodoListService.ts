@@ -14,11 +14,11 @@ export class TodoListService {
     return this.todoListSubject.asObservable();
   }
 
-  doneTodos() {
+  getDoneTodos() {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => todo.isDone)));
   }
 
-  undoneTodos() {
+  getUndoneTodos() {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => !todo.isDone)));
   }
 
