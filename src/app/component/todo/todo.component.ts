@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {Todo} from "../../entity/Todo";
 import {Router} from "@angular/router";
 
@@ -9,30 +9,19 @@ import {Router} from "@angular/router";
 })
 export class TodoComponent {
   @Input() todo!: Todo;
-  private _isEdit = true;
-  isSingleClick: boolean = true;
+  public isEdit = true;
+  private isSingleClick: boolean = true;
 
   constructor(
     private router: Router
-  ) {
-  }
-
-  get isEdit(): boolean {
-    return this._isEdit;
-  }
-
-  set isEdit(value: boolean) {
-    this._isEdit = value;
-  }
+  ) {}
 
   navigate(): void {
     this.isSingleClick = true;
     setTimeout(() => {
       if (this.isSingleClick) {
         this.router.navigate(['routing'], {
-          queryParams: {
-            value: this.todo.value, isDone: this.todo.isDone
-          }
+          queryParams: { todo: JSON.stringify(this.todo) }
         });
       }
     }, 250)

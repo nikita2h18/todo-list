@@ -9,18 +9,20 @@
   </mat-form-field>
 
   <div class="navigation-buttons">
-    <button mat-button aria-label="getAll" (click)="chooseButton(false, false)">
+    <button mat-button aria-label="getAll" (click)="chooseButton('all')">
       all
     </button>
 
-    <button mat-button aria-label="getProcessed" (click)="chooseButton(false, true)">
+    <button mat-button aria-label="getProcessed" (click)="chooseButton('processed')">
       processed
     </button>
 
-    <button mat-button aria-label="getAll" (click)="chooseButton(true, false)">
+    <button mat-button aria-label="getAll" (click)="chooseButton('done')">
       done
     </button>
   </div>
 
-  <app-todo-list [todoList]="getTodo()"></app-todo-list>
+  <app-todo-list *ngIf="button === 'all'" [todos]="getAll()" (event)="delete($event)"></app-todo-list>
+  <app-todo-list *ngIf="button === 'processed'" [todos]="getProcessed()" (event)="delete($event)"></app-todo-list>
+  <app-todo-list *ngIf="button === 'done'" [todos]="getDone()" (event)="delete($event)"></app-todo-list>
 </div>

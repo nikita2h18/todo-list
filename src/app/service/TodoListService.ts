@@ -1,31 +1,34 @@
 import {Todo} from "../entity/Todo";
 import {Injectable} from "@angular/core";
-import {todos} from "../globals/todos";
+import {BehaviorSubject, Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoListService {
-  pushTodo(todo: Todo) {
-    todos.push(todo);
+  private todos: Todo[] = [new Todo('Сходить в магазин')];
+  private todoListSubject = new BehaviorSubject<Todo[]>(this.todos);
+
+  doneTodos() {
+    return this.todoListSubject.pipe(map(todos => todos.filter(todo => todo.isDone)));
   }
 
-  getTodoList(): Todo[] {
-    return todos;
+  undoneTodos() {
+    return this.todoListSubject.pipe(map(todos => todos.filter(todo => !todo.isDone)));
   }
 
-  getTodosByIsDone(filter: boolean): Todo[] {
-    const todos: Todo[] = [];
-    this.getTodoList().forEach(todo => {
-      if (todo.isDone === filter) {
-        todos.push(todo);
-      }
-    })
-
-    return todos;
+  push(todo: Todo) {
+    this.todos.push(todo);
+    this.todoListSubject.next(this.todos);
   }
 
-  deleteTodo(todo: Todo): Todo[] {
-    return todos.splice(todos.indexOf(todo, 0), 1);
+  get() {
+    return this.todoListSubject.asObservable();
+  }
+
+  delete(todo: Todo) {
+    this.todos.splice(this.todos.indexOf(todo, 0), 1);
+    this.todoListSubject.next(this.todos);
   }
 }

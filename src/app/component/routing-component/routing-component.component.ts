@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Todo} from "../../entity/Todo";
 import {ActivatedRoute} from "@angular/router";
 
@@ -14,8 +14,8 @@ export class RoutingComponentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot);
-    this.todo.value = this.route.snapshot.queryParams.value;
-    this.todo.isDone = this.route.snapshot.queryParams.isDone;
+    const todo = JSON.parse(this.route.snapshot.queryParams.todo)
+    this.todo.value = todo.value;
+    this.todo.isDone = todo.isDone;
   }
 }

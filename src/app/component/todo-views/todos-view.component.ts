@@ -1,53 +1,49 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {TodoListService} from "../../service/TodoListService";
 import {Todo} from "../../entity/Todo";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-todo-view',
   templateUrl: './todos-view.component.html',
-  styleUrls: ['./todo-views.component.scss'],
+  styleUrls: ['./todos-view.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosViewComponent {
-  private isTodoDone = false;
-  private isTodoProcessed = false;
-  private _input = '';
-  private todoListService = new TodoListService();
+  public button = 'all';
+  public input = '';
 
-  get input(): string {
-    return this._input;
-  }
-
-  set input(value: string) {
-    this._input = value;
+  constructor(
+    private todoListService: TodoListService
+  ) {
   }
 
   resetInput(): void {
     this.input = ''
   }
 
-  addTodo(message: string): void {
+  addTodo(input: string): void {
     this.resetInput();
-    this.todoListService.pushTodo(new Todo(message, false));
+    this.todoListService.push(new Todo(input));
   }
 
-  chooseButton(isDone: boolean, isProcessed: boolean): void {
-    this.isTodoDone = isDone;
-    this.isTodoProcessed = isProcessed;
+  chooseButton(button: string): void {
+    this.button = button;
   }
 
-  getTodo(): Todo[] {
-    if (this.isTodoProcessed) {
-      this.isTodoDone = false;
-      return this.todoListService.getTodosByIsDone(false);
-    }
+  delete(todo: Todo) {
+    this.todoListService.delete(todo);
+  }
 
-    if (this.isTodoDone) {
-      this.isTodoProcessed = false;
-      return this.todoListService.getTodosByIsDone(true);
-    }
+  getAll() {
+    return this.todoListService.get()
+  }
 
-    return this.todoListService.getTodoList();
+  getProcessed() {
+    return this.todoListService.undoneTodos();
+  }
+
+  getDone() {
+    return this.todoListService.doneTodos();
   }
 }

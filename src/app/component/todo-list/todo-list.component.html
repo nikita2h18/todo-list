@@ -1,5 +1,5 @@
-<div  class="todo" *ngFor="let todo of todoList">
+<div  class="todo" *ngFor="let todo of (todos | async)">
     <app-todo class="todo__message" [todo]="todo"></app-todo>
 
-    <app-todo-button [todo]="todo" [todoList]="todoList" (event)="deleteTodo($event)"></app-todo-button>
+    <app-todo-button [todo]="todo" (event)="delete($event)"></app-todo-button>
 </div>
