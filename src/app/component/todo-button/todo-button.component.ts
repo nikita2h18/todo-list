@@ -10,9 +10,6 @@ export class TodoButtonComponent {
   @Input() todo!: Todo;
   @Output() event = new EventEmitter<Todo>();
 
-  constructor() {
-  }
-
   switchIsDone(id: string): void {
     if (this.todo.id === id) {
       this.todo.isDone = !this.todo.isDone;
