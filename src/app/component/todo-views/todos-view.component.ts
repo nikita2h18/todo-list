@@ -40,7 +40,7 @@ export class TodosViewComponent {
   }
 
   getProcessed() {
-    return this.todoListService.getUndoneTodos();
+    return this.todoListService.getProcessedTodos();
   }
 
   getDone() {

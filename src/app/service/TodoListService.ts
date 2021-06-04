@@ -18,7 +18,7 @@ export class TodoListService {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => todo.isDone)));
   }
 
-  getUndoneTodos() {
+  getProcessedTodos() {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => !todo.isDone)));
   }
 
