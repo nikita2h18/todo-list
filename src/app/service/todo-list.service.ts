@@ -6,7 +6,7 @@ import {map} from "rxjs/operators";
 @Injectable({
   providedIn: 'root',
 })
-export class TodosListService {
+export class TodoListService {
   private todos: Todo[] = [new Todo('Сходить в магазин')];
   private todoListSubject = new BehaviorSubject<Todo[]>(this.todos);
 
