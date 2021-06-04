@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {TodosService} from "../../service/todo-list.service";
+import {TodosListService} from "../../service/todos-list.service";
 import {Todo} from "../../entity/todo";
 import {Observable} from "rxjs";
 
@@ -15,7 +15,7 @@ export class TodosViewComponent {
   public currentTodos = this.getAll();
 
   constructor(
-    private todoListService: TodosService
+    private todoListService: TodosListService
   ) {}
 
   resetInput(): void {

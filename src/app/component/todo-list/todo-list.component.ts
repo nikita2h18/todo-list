@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {Todo} from "../../entity/todo";
-import {TodosService} from "../../service/todo-list.service";
-import {BehaviorSubject, Observable} from "rxjs";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-todo-list',
