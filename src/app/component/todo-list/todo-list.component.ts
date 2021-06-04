@@ -14,7 +14,6 @@ export class TodoListComponent {
   @Input() todos!: Observable<Todo[]>;
   @Output() event = new EventEmitter<Todo>();
 
-
   delete(todo: Todo) {
     this.event.emit(todo);
   }
