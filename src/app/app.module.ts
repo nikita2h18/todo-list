@@ -15,6 +15,7 @@ import {TodoListComponent} from './component/todo-list/todo-list.component';
 import {TodoComponent} from "./component/todo/todo.component";
 import { TodoButtonComponent } from './component/todo-button/todo-button.component';
 import { RoutingComponentComponent } from './component/routing-component/routing-component.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RoutingComponentComponent } from './component/routing-component/routing
     MatInputModule,
     MatButtonModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
