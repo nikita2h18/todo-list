@@ -26,6 +26,11 @@ export class TodoListService {
     return this.todoListSubject;
   }
 
+  setTodos(todos: Todo[]) {
+    this.todos = todos;
+    this.todoListSubject.next(this.todos);
+  }
+
   getDone(): Observable<Todo[]> {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => todo.isDone)));
   }
@@ -35,23 +40,14 @@ export class TodoListService {
   }
 
   add(todo: Todo): void {
-    this.http.post('http://localhost:3000/all', todo).subscribe(list => {
-      this.todos = list as Todo[];
-      this.todoListSubject.next(this.todos);
-    });
+    this.http.post('http://localhost:3000/all', todo).subscribe(todos => this.setTodos(todos as Todo[]));
   }
 
   delete(todo: Todo): void {
-    this.todos = this.todos.filter(t => t.id !== todo.id)
-    this.todoListSubject.next(this.todos);
+    this.http.post('http://localhost:3000/delete', todo).subscribe(todos => this.setTodos(todos as Todo[]));
   }
 
   switch(todo: Todo): void {
-    this.todos.forEach(t => {
-      if (t.id === todo.id) {
-        t.isDone = !t.isDone
-      }
-    });
-    this.todoListSubject.next(this.todos);
+    this.http.put('http://localhost:3000/switch', todo).subscribe(todos => this.setTodos(todos as Todo[]));
   }
 }
