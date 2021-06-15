@@ -9,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class TodoListService {
   private todos: Todo[] = [new Todo('Сходить в магазин')];
-  private todoListSubject = new BehaviorSubject<Todo[]>(this.todos);
+  public todoListSubject = new BehaviorSubject<Todo[]>(this.todos);
 
   constructor(
     private http: HttpClient,
@@ -17,13 +17,7 @@ export class TodoListService {
   }
 
   getAll(): Observable<Todo[]> {
-    this.http.get<Todo[]>('http://localhost:3000/').subscribe(
-      todoList => {
-        this.todos = todoList
-        this.todoListSubject.next(this.todos)
-      }
-    )
-    return this.todoListSubject;
+    return this.http.get<Todo[]>('http://localhost:3000/');
   }
 
   setTodos(todos: Todo[]) {
@@ -39,15 +33,15 @@ export class TodoListService {
     return this.todoListSubject.pipe(map(todos => todos.filter(todo => !todo.isDone)));
   }
 
-  add(todo: Todo): void {
-    this.http.post('http://localhost:3000/all', todo).subscribe(todos => this.setTodos(todos as Todo[]));
+  add(todo: Todo): Observable<Todo[]> {
+    return this.http.post('http://localhost:3000/all', todo) as Observable<Todo[]>;
   }
 
-  delete(todo: Todo): void {
-    this.http.post('http://localhost:3000/delete', todo).subscribe(todos => this.setTodos(todos as Todo[]));
+  delete(todo: Todo): Observable<Todo[]> {
+    return this.http.post('http://localhost:3000/delete', todo) as Observable<Todo[]>;
   }
 
-  switch(todo: Todo): void {
-    this.http.put('http://localhost:3000/switch', todo).subscribe(todos => this.setTodos(todos as Todo[]));
+  switch(todo: Todo): Observable<Todo[]> {
+    return this.http.put('http://localhost:3000/switch', todo) as Observable<Todo[]>;
   }
 }

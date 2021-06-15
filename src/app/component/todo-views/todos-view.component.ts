@@ -24,11 +24,12 @@ export class TodosViewComponent {
 
   addTodo(input: string): void {
     this.resetInput();
-    this.todoListService.add(new Todo(input));
+    this.todoListService.add(new Todo(input)).subscribe(todos => this.todoListService.setTodos(todos as Todo[]));
   }
 
   getAll(): Observable<Todo[]> {
-    return this.todoListService.getAll()
+    this.todoListService.getAll().subscribe(todos => this.todoListService.setTodos(todos));
+    return this.todoListService.todoListSubject
   }
 
   getProcessed(): Observable<Todo[]> {
@@ -40,10 +41,10 @@ export class TodosViewComponent {
   }
 
   delete(todo: Todo): void {
-    this.todoListService.delete(todo);
+    this.todoListService.delete(todo).subscribe(todos => this.todoListService.setTodos(todos));
   }
 
   switch(todo: Todo): void {
-    this.todoListService.switch(todo);
+    this.todoListService.switch(todo).subscribe(todos => this.todoListService.setTodos(todos));
   }
 }
